@@ -104,3 +104,5 @@ cuffdiff -o $DE/non_timeseries/ -L sample1,sample2 -p $P -b $REFERENCEFA -u --li
 
 echo "DE completed"
 ```
+
+###### Credit must be given to alyssafrazee@Github, for which a lot of this script is based on
