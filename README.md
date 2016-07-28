@@ -96,8 +96,6 @@ done &&
 echo "quantification completed"
 ```
 ## differential gene expression
-###After -L, user to specify the lable of each sample
-###In the same order as the label, user to specify the path to cxb file (from quantification step) of each sample.
 ```
 mkdir $DE/non_timeseries/
 
