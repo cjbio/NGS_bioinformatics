@@ -10,11 +10,11 @@
 ```
 PROJECTFOLDER=/home/chao/rnaseq/youngvsold_MSC_0014_0017_190716/
 ```
-###User must specify the name of each sample. i.e. for sample1.fastq.gz and sample2.fastq.gz, write:
+###User must specify the name of each sample. i.e. for sample1.fastq.gz, sample2.fastq.gz and sample3.fastq.gz you could write: (this applies to paired-end read files also)
 ```
-SAMPLES_ID="sample1 sample2"
+SAMPLES_ID="1 2 3"
 ```
-###these folders are auto-generated during running the script. Each stage of the processed data will be saved under one these folders. No user intervention needed.
+###these folders below are auto-generated during running the script. Each stage of the processed data will be saved under one these folders. No user intervention needed.
 ```
 SCRIPTS=$PROJECTFOLDER/scripts/
 FASTQFILES=$PROJECTFOLDER/data/
@@ -26,7 +26,7 @@ DE=$PROJECTFOLDER/DE/
 
 ## reference genome, index and annotation
 
-###User to specify the path to these files
+###User to specify the path to these files, and define some parameters
 ```
 GENE_REFERENCE=/lib/GenomeRefs/Homo_sapiens/Ensembl/GRCh38/Annotation/Genes/genes.gtf # path to reference annotation gtf or gff file
 BOWTIE_INDEX=/lib/GenomeRefs/Homo_sapiens/Ensembl/GRCh38/Sequence/Bowtie2Index/human38 # path to bowtie2 index (for tophap2)
@@ -34,7 +34,7 @@ REFERENCEFA=/lib/GenomeRefs/Homo_sapiens/Ensembl/GRCh38/Sequence/WholeGenomeFast
 P=22 # number of threads to use for data analysis (find out number of availible threads on linux using "htop" command)
 LIBRARYTYPE=fr-firststrand
 ```
-
+## ALL done! You can now kick back with a mojito and let the computer take care of the rest.
 ## TOPHAT2 alignment
 ```
 mkdir $SCRIPTS $ALIGNMENTFILES $ASSEMBLIESFILES $QUANTIFICATION $DE
