@@ -8,7 +8,7 @@
 
 ###User must specify the path to the RNA-seq project folder
 ```
-PROJECTFOLDER=/home/chao/rnaseq/youngvsold_MSC_0014_0017_190716/
+PROJECTFOLDER=/home/chao/rnaseq/experiment1/
 ```
 ###User must specify the name of each sample. i.e. for sample1.fastq.gz, sample2.fastq.gz and sample3.fastq.gz you could write: (this applies to paired-end read files also)
 ```
