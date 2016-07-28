@@ -100,9 +100,18 @@ echo "quantification completed"
 ###In the same order as the label, user to specify the path to cxb file (from quantification step) of each sample.
 ```
 mkdir $DE/non_timeseries/
-cuffdiff -o $DE/non_timeseries/ -L sample1,sample2 -p $P -b $REFERENCEFA -u --library-type $LIBRARYTYPE $ASSEMBLIESFILES/merged/merged.gtf $QUANTIFICATION/sampley/abundances.cxb $QUANTIFICATION/sample0/abundances.cxb
+
+LABELS="$(for SAMPLE_ID in $SAMPLES;do echo "sample$SAMPLE_ID"|tr "\n" ",";done)"
+QUANTFILES="$(for SAMPLE_ID in $SAMPLES;do echo "$QUANTIFICATION/sample$SAMPLE_ID/abundances.cxb"|tr "\n" " ";done)"
+
+cat > $SCRIPTS/cuffdiff.sh <<EOF
+cuffdiff -o $DE/test/ -L $LABELS -p $P -b $REFERENCEFA -u --library-type $LIBRARYTYPE $ASSEMBLIESFILES/merged/merged.gtf $QUANTFILES
+EOF
+
+bash $SCRIPTS/cuffdiff.sh
 
 echo "DE completed"
+
 ```
 
 ###### Credit must be given to alyssafrazee@Github, for which a lot of this script is based on
