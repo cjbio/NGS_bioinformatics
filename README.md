@@ -61,7 +61,7 @@ for SAMPLE_ID in $SAMPLES
 do
 cat > $SCRIPTS/cufflinks_${SAMPLE_ID}.sh <<EOF
 mkdir $ASSEMBLIESFILES/sample${SAMPLE_ID} &&
-cufflinks -p $P -g $ALIGNMENTFILES --library-type $LIBRARYTYPE -o $ASSEMBLIESFILES/sample${SAMPLE_ID} $ALIGNMENTFILES/sample${SAMPLE_ID}.bam &&
+cufflinks -p $P -g $GENE_REFERENCE --library-type $LIBRARYTYPE -o $ASSEMBLIESFILES/sample${SAMPLE_ID} $ALIGNMENTFILES/sample${SAMPLE_ID}.bam &&
 mv $ASSEMBLIESFILES/sample${SAMPLE_ID}/transcripts.gtf $ASSEMBLIESFILES/sample${SAMPLE_ID}_transcripts.gtf
 EOF
 
@@ -79,7 +79,7 @@ echo "$ASSEMBLIESFILES/sample${SAMPLE_ID}_transcripts.gtf" >> $ASSEMBLIESFILES/a
 done &&
 
 mkdir $ASSEMBLIESFILES/merged/
-cuffmerge -s $GENE_REFERENCE -p $P -s $REFERENCEFA -g $GENE_REFERENCE -o $ASSEMBLIESFILES/merged/ $ASSEMBLIESFILES/assemblie_file_path.txt &&
+cuffmerge -p $P -s $REFERENCEFA -g $GENE_REFERENCE -o $ASSEMBLIESFILES/merged/ $ASSEMBLIESFILES/assemblie_file_path.txt &&
 
 echo "merging transcripts completed"
 ```
@@ -106,7 +106,7 @@ LABELS="$(for SAMPLE_ID in $SAMPLES;do echo "sample$SAMPLE_ID"|tr "\n" ",";done)
 QUANTFILES="$(for SAMPLE_ID in $SAMPLES;do echo "$QUANTIFICATION/sample$SAMPLE_ID/abundances.cxb"|tr "\n" " ";done)"
 
 cat > $SCRIPTS/cuffdiff.sh <<EOF
-cuffdiff -o $DE/test/ -L $LABELS -p $P -b $REFERENCEFA -u --library-type $LIBRARYTYPE $ASSEMBLIESFILES/merged/merged.gtf $QUANTFILES
+cuffdiff -o $DE/non_timeseries/ -L $LABELS -p $P -b $REFERENCEFA -u --library-type $LIBRARYTYPE $ASSEMBLIESFILES/merged/merged.gtf $QUANTFILES
 EOF
 
 bash $SCRIPTS/cuffdiff.sh
